@@ -76,7 +76,8 @@ if (VSYS_HOST_LINUX EQUAL 1)
     find_path(
         KERNEL_HEADERS
         include/linux/user.h
-        PATHS /usr/src/linux-headers-${KERNEL_RELEASE})
+        PATHS /usr/src/linux-headers-${KERNEL_RELEASE}
+        REQUIRED)
     message("  Kernel release: ${KERNEL_RELEASE}")
     message("  Kernel headers: ${KERNEL_HEADERS}")
     # Add header files
