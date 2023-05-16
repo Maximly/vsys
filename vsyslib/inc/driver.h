@@ -20,6 +20,8 @@ namespace vsys
 
 class Driver
 {
+public:
+    Driver() {}
 };
 
 } /* vsys */

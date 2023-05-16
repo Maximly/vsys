@@ -32,7 +32,7 @@ endif()
 ###############################################################################
 #   Detect host process architecture
 ###############################################################################
-execute_process(COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE _VSYS_HOST_ARCH)
+execute_process(COMMAND uname -m OUTPUT_VARIABLE _VSYS_HOST_ARCH OUTPUT_STRIP_TRAILING_WHITESPACE)
 if (_VSYS_HOST_ARCH STREQUAL "")
     set(_VSYS_HOST_ARCH ${CMAKE_HOST_SYSTEM_PROCESSOR})
 endif()
@@ -58,15 +58,27 @@ if (VSYS_HOST_MACOS EQUAL 1 AND NOT VSYS_HOST_PLATFORM STREQUAL "a64")
     endif()
 endif()
 set(VSYS_HOST "${VSYS_HOST_TARGET}${VSYS_HOST_PLATFORM}")
-
+add_compile_definitions(VSYS_HOST=${VSYS_HOST})
 message("${VSYS_DETECTED_HOST_MESSAGE} (host=${VSYS_HOST})")
 
 
 ###############################################################################
-#   Set target definitions
+#   Set Linux target definitions
 ###############################################################################
-
-
-#if (VSYS_HOST_LINUX EQUAL 1)
-#    target_compile_definitions(${VSYS_KERNEL} -D__KERNEL__ -DMODULE)
-#endif()
+if (VSYS_HOST_LINUX EQUAL 1)
+    add_definitions(-D__KERNEL__ -DMODULE)
+    # Find the kernel release
+    execute_process(
+        COMMAND uname -r 
+        OUTPUT_VARIABLE KERNEL_RELEASE 
+        OUTPUT_STRIP_TRAILING_WHITESPACE)
+    # Find the headers
+    find_path(
+        KERNEL_HEADERS
+        include/linux/user.h
+        PATHS /usr/src/linux-headers-${KERNEL_RELEASE})
+    message("  Kernel release: ${KERNEL_RELEASE}")
+    message("  Kernel headers: ${KERNEL_HEADERS}")
+    # Add header files
+    include_directories(${KERNEL_HEADERS}/include)
+endif()
