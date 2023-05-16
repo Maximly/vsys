@@ -1,7 +1,15 @@
 cmake_minimum_required(VERSION 3.0)
 
+###############################################################################
+#   Global setup
+###############################################################################
 project(vsyslib)
-
+file(GLOB VSYS_SRC "../src/*.cpp")
+add_library(${PROJECT_NAME} STATIC ${VSYS_SRC})
+target_include_directories(${PROJECT_NAME} PRIVATE "../inc")
+set(CMAKE_DEBUG_POSTFIX d)
+set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
+ 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD 11)
 
@@ -55,16 +63,10 @@ message("${VSYS_DETECTED_HOST_MESSAGE} (host=${VSYS_HOST})")
 
 
 ###############################################################################
-#   Set targets
+#   Set target definitions
 ###############################################################################
 
-set(VSYS_KERNEL "k${VSYS_HOST}")
-add_custom_target(${VSYS_KERNEL})
-message("  Added kernel target: ${VSYS_KERNEL}")
-set(VSYS_USER "u${VSYS_HOST}")
-add_custom_target(${VSYS_USER})
-message("  Added user target: ${VSYS_USER}")
 
-if (VSYS_HOST_LINUX EQUAL 1)
-    target_compile_definitions(${VSYS_KERNEL} -D__KERNEL__ -DMODULE)
-endif()
+#if (VSYS_HOST_LINUX EQUAL 1)
+#    target_compile_definitions(${VSYS_KERNEL} -D__KERNEL__ -DMODULE)
+#endif()
