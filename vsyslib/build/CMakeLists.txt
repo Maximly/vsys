@@ -5,8 +5,9 @@ project(vsyslib)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD 11)
 
+
 ###############################################################################
-#   Detect host process architecture
+#   Detect host OS
 ###############################################################################
 if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
     set(VSYS_HOST_MACOS 1)
@@ -19,12 +20,16 @@ elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
     set(VSYS_HOST_TARGET "w")
 endif()
 
+
+###############################################################################
+#   Detect host process architecture
+###############################################################################
 execute_process(COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE _VSYS_HOST_ARCH)
 if (_VSYS_HOST_ARCH STREQUAL "")
     set(_VSYS_HOST_ARCH ${CMAKE_HOST_SYSTEM_PROCESSOR})
 endif()
 string(TOLOWER ${_VSYS_HOST_ARCH} VSYS_HOST_ARCH)
-if (VSYS_HOST_ARCH STREQUAL "arm64")
+if (VSYS_HOST_ARCH STREQUAL "arm64" OR VSYS_HOST_ARCH STREQUAL "aarch64")
     set(VSYS_HOST_PLATFORM "a64")
 elseif (VSYS_HOST_ARCH STREQUAL "x86_64")
     set(VSYS_HOST_PLATFORM "x64")
@@ -35,7 +40,7 @@ endif()
 set(VSYS_DETECTED_HOST_MESSAGE "Running on ${CMAKE_HOST_SYSTEM_NAME} ${VSYS_HOST_ARCH}")
 
 # Check whether we are running under Rosetta on arm64 hardware
-if (VSYS_HOST_MACOS EQUAL 1 AND NOT VSYS_HOST_ARCH STREQUAL "arm64")
+if (VSYS_HOST_MACOS EQUAL 1 AND NOT VSYS_HOST_PLATFORM STREQUAL "a64")
     execute_process(COMMAND sysctl -q hw.optional.arm64
     OUTPUT_VARIABLE _sysctl_stdout
     RESULT_VARIABLE _sysctl_result)
@@ -44,16 +49,22 @@ if (VSYS_HOST_MACOS EQUAL 1 AND NOT VSYS_HOST_ARCH STREQUAL "arm64")
         set(VSYS_DETECTED_HOST_MESSAGE "${VSYS_DETECTED_HOST_MESSAGE} on Rosetta")
     endif()
 endif()
+set(VSYS_HOST "${VSYS_HOST_TARGET}${VSYS_HOST_PLATFORM}")
 
-message("${VSYS_DETECTED_HOST_MESSAGE}")
+message("${VSYS_DETECTED_HOST_MESSAGE} (host=${VSYS_HOST})")
+
 
 ###############################################################################
 #   Set targets
 ###############################################################################
 
-add_custom_target(kl64)     # linux kernel module x64 bit
-add_custom_target(klarm64)  # linux kernel module arm64 bit
-add_custom_target(kw64)     # windows kernel module x64 bit
+set(VSYS_KERNEL "k${VSYS_HOST}")
+add_custom_target(${VSYS_KERNEL})
+message("  Added kernel target: ${VSYS_KERNEL}")
+set(VSYS_USER "u${VSYS_HOST}")
+add_custom_target(${VSYS_USER})
+message("  Added user target: ${VSYS_USER}")
 
-# Linux kernel specific
-target_compile_definitions(-D__KERNEL__ -DMODULE)
+if (VSYS_HOST_LINUX EQUAL 1)
+    target_compile_definitions(${VSYS_KERNEL} -D__KERNEL__ -DMODULE)
+endif()
