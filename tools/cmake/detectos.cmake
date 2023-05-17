@@ -43,7 +43,7 @@ else()
     message(FATAL_ERROR "Process architecture not detected!")
 endif()
 
-set(VSYS_DETECTED_HOST_MESSAGE "Running on ${CMAKE_HOST_SYSTEM_NAME} ${VSYS_HOST_ARCH}")
+set(VSYS_DETECTED_HOST_MESSAGE "Running ${PROJECT_NAME} on ${CMAKE_HOST_SYSTEM_NAME} ${VSYS_HOST_ARCH}")
 
 # Check whether we are running under Rosetta on arm64 hardware
 if (VSYS_HOST_MACOS EQUAL 1 AND NOT VSYS_HOST_PLATFORM STREQUAL "a64")
