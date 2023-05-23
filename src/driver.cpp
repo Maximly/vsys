@@ -14,7 +14,10 @@ Revision History:
 
 --*/
 #include "driver.h"
-#include "stdio.h"
+//#include "stdio.h"
+//#include <linux/init.h>
+#include <linux/kernel.h>
+//#include <linux/module.h>
 
 void a() 
 {
