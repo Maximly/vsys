@@ -4,10 +4,6 @@ Abstract:
 
     Basic module (executable or driver)
 
-Author:
-
-    Maxim Lyadvinsky
-
 Revision History:
 
     16/05/2023 - Maxim Lyadvinsky - Created
@@ -16,6 +12,7 @@ Revision History:
 #pragma once
 #include "base.h"
 #include <vector>
+#include <string>
 
 namespace vsys {
 

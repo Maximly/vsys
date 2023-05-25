@@ -3,9 +3,6 @@
 # Abstract:
 #   Linux kernel specific setup
 #    
-# Author:
-#   Maxim Lyadvinsky
-#
 # Revision History:
 #   16/05/2023 - Maxim Lyadvinsky - Created
 #
@@ -26,6 +23,12 @@ find_path(
     REQUIRED)
 if (EXISTS ${KERNEL_HEADERS})
     include_directories(${KERNEL_HEADERS}/include)
+    if (VSYS_HOST_PLATFORM STREQUAL "a64")
+        include_directories(${KERNEL_HEADERS}/arch/arm64/include)
+        include_directories(${KERNEL_HEADERS}/arch/arm/include)
+    elseif (VSYS_HOST_PLATFORM STREQUAL "x64")
+        include_directories(${KERNEL_HEADERS}/arch/x86/include)
+    endif()
 else()
     message(FATAL_ERROR Kernel headers are not found!)
 endif()

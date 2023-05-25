@@ -2,19 +2,18 @@
 
 Abstract:
 
-    Basic types
-
-Author:
-
-    Maxim Lyadvinsky
+    Strings helpers
 
 Revision History:
 
-    16/06/2021 - Maxim Lyadvinsky - Created
+    24/05/2023 - Maxim Lyadvinsky - Created
 
 --*/
-#include "base.h"
+// Disable Windows CRT warnings
+#define _CRT_SECURE_NO_WARNINGS
+#include "strings.h"
 #include <wchar.h>
+#include <cstring>
 
 using namespace vsys;
 

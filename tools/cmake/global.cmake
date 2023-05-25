@@ -3,9 +3,6 @@
 # Abstract:
 #   Global VSYS building setup
 #    
-# Author:
-#   Maxim Lyadvinsky
-#
 # Revision History:
 #   16/05/2023 - Maxim Lyadvinsky - Created
 #
@@ -27,6 +24,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_TOOLS_DIR}/../../inc
 target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic -Werror>)
+
 
 ###############################################################################
 #   Global debug/release settings
@@ -69,7 +67,7 @@ endif()
 
 
 ###############################################################################
-#   Global platform settings
+#   Global OS/processor architecture settings
 ###############################################################################
 include("${CMAKE_TOOLS_DIR}/detectos.cmake")
 
@@ -80,5 +78,3 @@ include("${CMAKE_TOOLS_DIR}/detectos.cmake")
 if (VSYS_HOST_LINUX AND VSYS_KERNEL)
     include("${CMAKE_TOOLS_DIR}/linux-kernel.cmake")
 endif()
-
-

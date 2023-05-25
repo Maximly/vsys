@@ -2,8 +2,8 @@
 
 Abstract:
 
-    Supported targets and options
-    ------------------------------------------------------------
+    Platform-specific defines and includes. Supported targets and options:
+    ----------------------------------------------------------------------
         OSes:
             Mac (m)         VSYS_MAC
             Windows (w)     VSYS_WIN
@@ -22,14 +22,10 @@ Abstract:
             MinSizeRel      VSYS_REL && VSYS_MINSIZEREL
 
     Target postfix for binaries/libs
-    ------------------------------------------------------------
+    ----------------------------------------------------------------------
         _[k]{OS}{Processor}[d]
             f.e.:   _ma64d (user mode MacOS arm64 debug)
                     _klx64 (kernel mode Linux x64 release)
-
-Author:
-
-    Maxim Lyadvinsky
 
 Revision History:
 
@@ -40,7 +36,7 @@ Revision History:
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Generic checks and defines
+//  Generic platform checks
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -71,11 +67,14 @@ Revision History:
 #endif
 
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  User mode defines
+//  Linux kernel defines and global includes
 //
 ////////////////////////////////////////////////////////////////////////////////
-#ifdef VSYS_USER
-int main(int argc, char* argv[]);
-#endif // VSYS_USER
+#if defined VSYS_KERNEL && defined VSYS_LIN
+#pragma GCC system_header
+#include <linux/init.h>
+#include <linux/kernel.h>
+#endif // VSYS_KERNEL && VSYS_LINUX

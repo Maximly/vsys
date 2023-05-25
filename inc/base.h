@@ -4,10 +4,6 @@ Abstract:
 
     Basic types & defines
 
-Author:
-
-    Maxim Lyadvinsky
-
 Revision History:
 
     16/06/2021 - Maxim Lyadvinsky - Created
@@ -15,19 +11,17 @@ Revision History:
 --*/
 #pragma once
 #include <cstddef>
-#include <string>
 #include "targets.h"
-
-namespace vsys {
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
 #endif // UNUSED
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Strings support
+//
+//  User mode defines and global includes
+//
 ////////////////////////////////////////////////////////////////////////////////
-std::string W2A(const wchar_t* s);
-std::wstring A2W(const char* s);
-
-} /* vsys */
+#ifdef VSYS_USER
+int main(int argc, char* argv[]);
+#endif // VSYS_USER
