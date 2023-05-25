@@ -19,7 +19,7 @@ execute_process(
 find_path(
     KERNEL_HEADERS
     include/linux/user.h
-    PATHS /usr/src/linux-headers-${KERNEL_RELEASE}
+    PATHS /usr/src/linux-headers-${KERNEL_RELEASE} /lib/modules/${KERNEL_RELEASE}/source
     REQUIRED)
 if (EXISTS ${KERNEL_HEADERS})
     include_directories(${KERNEL_HEADERS}/include)
