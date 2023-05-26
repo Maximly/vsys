@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.0)
 
 project(vsys)
 file(GLOB VSYS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
