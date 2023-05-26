@@ -2,7 +2,7 @@
 
 Abstract:
 
-    Hello driver sample
+    Basic module sample
 
 Revision History:
 

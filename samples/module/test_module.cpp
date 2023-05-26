@@ -2,7 +2,7 @@
 
 Abstract:
 
-    Basic driver
+    Basic module sample
 
 Revision History:
 
@@ -26,7 +26,6 @@ MyModule::OnLoad()
         GetBinaryInfoA().c_str()));
     return true;
 }
-
 
 int
 MyModule::OnRun()
