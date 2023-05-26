@@ -19,8 +19,11 @@ MyModule::OnLoad()
 {
     DbgSetPref(("VSYSTEST: "));
     DbgPrint(("OnLoad with %i argument(s)\n"
-        "    Path: %s",
-        GetArgs(), GetArgA().c_str()));
+        "    Path: %s\n"
+        "    Binary type: %s",
+        GetArgs(),
+        GetArgA().c_str(),
+        GetBinaryInfoA().c_str()));
     return true;
 }
 

@@ -27,7 +27,7 @@ vsys::W2A(const wchar_t* s)
     size_t l = wcslen(s);
     char* buf = new char[l + 1];
     if (buf) {
-        wcstombs(buf, s, l);
+        wcstombs(buf, s, l + 1);
         str = buf;
         delete[] buf;
     }
@@ -42,7 +42,7 @@ vsys::A2W(const char* s)
     size_t l = strlen(s);
     wchar_t* buf = new wchar_t[l + 1];
     if (buf) {
-        mbstowcs(buf, s, l);
+        mbstowcs(buf, s, l + 1);
         str = buf;
         delete[] buf;
     }

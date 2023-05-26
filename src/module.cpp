@@ -34,6 +34,37 @@ Module::~Module()
 
 
 ////////////////////////////////////////////////////////////////////////////////
+//  Platform info
+////////////////////////////////////////////////////////////////////////////////
+std::string
+Module::GetBinaryInfoA()
+{
+    std::string info;
+    #ifdef VSYS_MAC
+    info = "Darwin ";
+    #elif defined VSYS_WIN
+    info = "Windows ";
+    #elif defined VSYS_LIN
+    info = "Linux ";
+    #else
+    info = "Undefined ";
+    #endif // VSYS_MAC
+    #ifdef VSYS_USER
+    info += "user mode ";
+    #else
+    info += "kernel mode ";
+    #endif // VSYS_USER
+    #ifdef VSYS_X64
+    info += "x64";
+    #elif defined VSYS_A64
+    info += "arm64";
+    #endif // VSYS_MAC
+    return info;
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 //  Platform-specific entry points
 ////////////////////////////////////////////////////////////////////////////////
 #ifdef VSYS_USER
