@@ -10,9 +10,10 @@ Revision History:
 
 --*/
 #pragma once
-#include "base.h"
 #include <vector>
 #include <string>
+#include "base.h"
+#include "strings.h"
 
 namespace vsys {
 
@@ -23,6 +24,13 @@ public:
     //  Module instance
     ////////////////////////////////////////////////////////////////////////////////
     static Module* Instance() { return module_; }
+
+    ////////////////////////////////////////////////////////////////////////////////
+    //  Start arguments
+    ////////////////////////////////////////////////////////////////////////////////
+    int GetArgs() const { return args_.size(); }
+    std::wstring GetArg(int arg = 0) const { return args_[arg]; }
+    std::string GetArgA(int arg = 0) const { return W2A(GetArg(arg).c_str());}
 
 protected:
     ////////////////////////////////////////////////////////////////////////////////

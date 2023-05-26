@@ -18,7 +18,9 @@ bool
 MyModule::OnLoad()
 {
     DbgSetPref(("VSYSTEST: "));
-    DbgPrint(("OnLoad"));
+    DbgPrint(("OnLoad with %i argument(s)\n"
+        "    Path: %s",
+        GetArgs(), GetArgA().c_str()));
     return true;
 }
 

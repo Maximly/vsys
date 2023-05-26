@@ -19,12 +19,30 @@ static const int vsysDbgPref = 64;
 static char vsysPref[vsysDbgPref] = {};
 
 void
-_DbgPrint(const char* p, ...)
+_DbgPrintRawVA(const char* p, va_list args)
 {
-    printf("%s", vsysPref);
+    vprintf(p, args);
+}
+
+
+void
+_DbgPrintRaw(const char* p, ...)
+{
     va_list args;
     va_start(args, p);
-    _DbgPrintRaw(p, args);
+    _DbgPrintRawVA(p, args);
+    va_end(args);
+}
+
+
+void
+_DbgPrint(const char* p, ...)
+{
+    va_list args;
+    va_start(args, p);
+    printf("%s", vsysPref);
+    _DbgPrintRawVA(p, args);
+    va_end(args);
     printf("\n");
 }
 
@@ -35,16 +53,10 @@ _DbgSetPref(const char* p, ...)
     va_list args;
     va_start(args, p);
     vsnprintf(vsysPref, vsysDbgPref, p, args);
+    va_end(args);
 }
 
 
-void
-_DbgPrintRaw(const char* p, ...)
-{
-    va_list args;
-    va_start(args, p);
-    vprintf(p, args);
-}
 
 
 #endif // VSYS_DBG
