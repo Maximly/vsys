@@ -12,9 +12,10 @@ Revision History:
 #pragma once
 #include "module.h"
 
-class MyDriver : public vsys::Module
+class MyModule : public vsys::Module
 {
 protected:
     virtual bool OnLoad();
+    virtual int OnRun();
     virtual void OnUnload();
 };

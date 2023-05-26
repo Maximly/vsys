@@ -31,8 +31,8 @@ protected:
     Module();
     virtual ~Module();
     virtual bool OnLoad() { return true; }
-    virtual int Run() { return 0; }
-    virtual void OnUload() {}
+    virtual int OnRun() { return 0; }
+    virtual void OnUnload() {}
 
     ////////////////////////////////////////////////////////////////////////////////
     //  Platform-specific entry points
@@ -47,4 +47,3 @@ private:
 };
 
 } /* vsys */
-

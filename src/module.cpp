@@ -47,8 +47,8 @@ main(int argc, char* argv[])
             module->args_.push_back(A2W(argv[arg]));
         }
         if (module->OnLoad()) {
-            result = module->Run();
-            module->OnUload();
+            result = module->OnRun();
+            module->OnUnload();
         }
     }
     return result;
