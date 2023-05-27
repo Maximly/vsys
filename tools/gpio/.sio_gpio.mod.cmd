@@ -1,0 +1,1 @@
+cmd_/media/psf/Develop/vsys/tools/gpio/sio_gpio.mod := printf '%s\n'   sio_gpio.o | awk '!x[$$0]++ { print("/media/psf/Develop/vsys/tools/gpio/"$$0) }' > /media/psf/Develop/vsys/tools/gpio/sio_gpio.mod

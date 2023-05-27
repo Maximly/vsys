@@ -1,0 +1,1 @@
+cmd_/media/psf/Develop/vsys/tools/gpio/Module.symvers :=  scripts/mod/modpost -m -a     -o /media/psf/Develop/vsys/tools/gpio/Module.symvers -T /media/psf/Develop/vsys/tools/gpio/modules.order -i Module.symvers -e 

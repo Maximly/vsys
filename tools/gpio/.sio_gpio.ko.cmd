@@ -1,0 +1,1 @@
+cmd_/media/psf/Develop/vsys/tools/gpio/sio_gpio.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /media/psf/Develop/vsys/tools/gpio/sio_gpio.ko /media/psf/Develop/vsys/tools/gpio/sio_gpio.o /media/psf/Develop/vsys/tools/gpio/sio_gpio.mod.o;  true
