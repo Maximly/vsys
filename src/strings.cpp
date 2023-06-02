@@ -9,6 +9,7 @@ Revision History:
     24/05/2023 - Maxim Lyadvinsky - Created
 
 --*/
+#include "base.h"
 // Disable Windows CRT warnings
 #define _CRT_SECURE_NO_WARNINGS
 #include "strings.h"

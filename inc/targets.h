@@ -67,14 +67,11 @@ Revision History:
 #endif
 
 
-
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  Linux kernel defines and global includes
+//  Linux kernel defines
 //
 ////////////////////////////////////////////////////////////////////////////////
 #if defined VSYS_KERNEL && defined VSYS_LIN
-#pragma GCC system_header
-#include <linux/init.h>
-#include <linux/kernel.h>
-#endif // VSYS_KERNEL && VSYS_LINUX
+#include "kernel/linux/base.h"
+#endif // VSYS_KERNEL && VSYS_LIN

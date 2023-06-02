@@ -10,18 +10,9 @@ Revision History:
 
 --*/
 #pragma once
-#include <cstddef>
 #include "targets.h"
+#include <cstddef>
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
 #endif // UNUSED
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//  User mode defines and global includes
-//
-////////////////////////////////////////////////////////////////////////////////
-#ifdef VSYS_USER
-int main(int argc, char* argv[]);
-#endif // VSYS_USER

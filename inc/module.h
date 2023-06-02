@@ -10,10 +10,14 @@ Revision History:
 
 --*/
 #pragma once
+#include "base.h"
 #include <vector>
 #include <string>
-#include "base.h"
 #include "strings.h"
+
+#ifdef VSYS_USER
+int main(int argc, char* argv[]);
+#endif // VSYS_USER
 
 namespace vsys {
 

@@ -9,6 +9,7 @@ Revision History:
     16/05/2023 - Maxim Lyadvinsky - Created
 
 --*/
+#include "base.h"
 #include "module.h"
 #include "strings.h"
 

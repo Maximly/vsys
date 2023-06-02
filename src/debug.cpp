@@ -9,6 +9,7 @@ Revision History:
     26/05/2023 - Maxim Lyadvinsky - Created
 
 --*/
+#include "base.h"
 #include <cstdarg>
 #include <cstdio>
 #include "debug.h"
