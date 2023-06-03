@@ -6,5 +6,5 @@ Makefile
 .DS_Store
 *.a
 *.tmp
-cmake/generated
+tools/cmake/generated
 inc/linux/kernel/generated
