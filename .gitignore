@@ -5,3 +5,5 @@ CMakeCache.txt
 Makefile
 .DS_Store
 *.a
+cmake/generated
+inc/linux/kernel/generated
