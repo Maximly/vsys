@@ -10,8 +10,9 @@ Revision History:
 
 --*/
 #pragma once
+#include "csupport.h"
 #include "targets.h"
-#include <cstddef>
+#include <stddef.h>
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)

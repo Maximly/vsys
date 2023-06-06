@@ -10,8 +10,8 @@ Revision History:
 
 --*/
 #include "base.h"
-#include <cstdarg>
-#include <cstdio>
+#include <stdarg.h>
+#include <stdio.h>
 #include "debug.h"
 
 #ifdef VSYS_DBG
@@ -56,8 +56,5 @@ _DbgSetPref(const char* p, ...)
     vsnprintf(vsysPref, vsysDbgPref, p, args);
     va_end(args);
 }
-
-
-
 
 #endif // VSYS_DBG

@@ -46,7 +46,7 @@ message("  Kernel modules: ${KERNEL_MODULES} (${KERNEL_MAKEFILE})")
 set(CMAKE_KBUILD ${CMAKE_TOOLS_DIR}/generated/kbuild.cmake)
 if (NOT EXISTS ${CMAKE_KBUILD})
     execute_process(
-        COMMAND ./kbuild.sh
+        COMMAND ./kbuild.sh ${KERNEL_HEADERS}
         WORKING_DIRECTORY ${CMAKE_TOOLS_DIR}/../kbuild)
 endif()
 if (EXISTS ${CMAKE_KBUILD})
@@ -55,11 +55,3 @@ if (EXISTS ${CMAKE_KBUILD})
 else()
     message(FATAL_ERROR "Cannot detect kernel module linker parameters!")
 endif()
-target_compile_options(${PROJECT_NAME} PRIVATE
-    $<$<COMPILE_LANGUAGE:C>:-nostdinc>)
-
-###############################################################################
-#   Add Linux kernel specific sources
-###############################################################################
-file(GLOB VSYS_SRC_LINUX "${CMAKE_CURRENT_SOURCE_DIR}/src/kernel/linux/*.cpp")
-target_sources(${PROJECT_NAME} PRIVATE ${VSYS_SRC_LINUX})

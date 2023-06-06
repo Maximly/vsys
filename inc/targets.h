@@ -73,5 +73,5 @@ Revision History:
 //
 ////////////////////////////////////////////////////////////////////////////////
 #if defined VSYS_KERNEL && defined VSYS_LIN
-#include "kernel/linux/base.h"
+#include "linux/kernel/base.h"
 #endif // VSYS_KERNEL && VSYS_LIN
