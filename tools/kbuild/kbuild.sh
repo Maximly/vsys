@@ -66,7 +66,7 @@ cxx_add_options='
 sed_options_list_to_string='s/ \+/\\|/g';
 cxx_remove_options_list=$(echo $cxx_remove_options | sed -e "$sed_options_list_to_string");
 sed_cxx_compiler_options='
-    s/^\(-std=gnu\)\(.*\)$/\1++\2/p;
+    s/^\(-std=gnu\)11\(.*\)$/\1++14\2/p;
     /^\(-std=gnu\|'$cxx_remove_options_list'\).*$/! p;
     '
 
@@ -150,12 +150,17 @@ sed_rename_const_void='s/^\(.*\)const void\(.*__nosave_begin.*\)$/\1const int\2/
 sed_disable_build_bug='s/^\(.*define BUILD_BUG_ON_ZERO(e)[^(]\+(\)(.*$/\10)/'
 sed_seqprop='/^#define __seqprop.*$/,/^.*__seqprop_case.*))$/d; /^#define seqprop_ptr.*$/ s/^\(.*\)$/#include <linux\/kernel\/seqprop.h>\n\1/';
 sed_hrtimer='s/^\(.*enum hrtimer_restart\)\([^{]*{.*\)$/\1 : int\2/'
+sed_log2_constexpr='s/^\(.*\)\(int\|bool\|long\)\( \)\(__ilog2_u32\|__ilog2_u64\|is_power_of_2\|__order_base_2\|__bits_per\)\((.*\)$/\1constexpr \2\3\4\5/';
+sed_fls_constexpr='s/^\(.*\)\(int\|long\)\( *\)\(fls\|fls64\|__fls\)\((.*\)$/\1constexpr \2\3\4\5/';
 headers_list=(
     "arch/arm64/include/asm/atomic_ll_sc.h"         "$sed_rename_new"
     "arch/arm64/include/asm/atomic_lse.h"           "$sed_rename_new"
     "arch/arm64/include/asm/barrier.h"              "$sed_init_union"
     "arch/arm64/include/asm/cmpxchg.h"              "$sed_rename_new"
     "include/asm-generic/sections.h"                "$sed_rename_const_void"
+    "include/asm-generic/bitops/builtin-fls.h"      "$sed_fls_constexpr"
+    "include/asm-generic/bitops/builtin-__fls.h"    "$sed_fls_constexpr"
+    "include/asm-generic/bitops/fls64.h"            "$sed_fls_constexpr"
     "include/linux/atomic/atomic-arch-fallback.h"   "$sed_rename_new"
     "include/linux/atomic/atomic-long.h"            "$sed_rename_new"
     "include/linux/atomic/atomic-instrumented.h"    "$sed_rename_new"
@@ -164,7 +169,9 @@ headers_list=(
     "include/linux/hrtimer.h"                       "$sed_hrtimer"
     "include/linux/list.h"                          "$sed_rename_new"
     "include/linux/llist.h"                         "$sed_rename_new"
+    "include/linux/log2.h"                          "$sed_log2_constexpr"
     "include/linux/math.h"                          "$sed_remove_void"
+    "include/linux/mm_types.h"                      "$sed_rename_new"
     "include/linux/pid.h"                           "$sed_rename_new"
     "include/linux/rbtree.h"                        "$sed_rename_new"
     "include/linux/rcupdate.h"                      "$sed_rename_new"
