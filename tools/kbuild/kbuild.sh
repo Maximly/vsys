@@ -152,6 +152,8 @@ sed_seqprop='/^#define __seqprop.*$/,/^.*__seqprop_case.*))$/d; /^#define seqpro
 sed_hrtimer='s/^\(.*enum hrtimer_restart\)\([^{]*{.*\)$/\1 : int\2/'
 sed_log2_constexpr='s/^\(.*\)\(int\|bool\|long\)\( \)\(__ilog2_u32\|__ilog2_u64\|is_power_of_2\|__order_base_2\|__bits_per\)\((.*\)$/\1constexpr \2\3\4\5/';
 sed_fls_constexpr='s/^\(.*\)\(int\|long\)\( *\)\(fls\|fls64\|__fls\)\((.*\)$/\1constexpr \2\3\4\5/';
+sed_rcu_init='s/^\(.*define RCU_INITIALIZER(v)\).*$/\1 (v)/';
+#sed_test_bit='s/^\(.*test_bit(\)\(.*\)$/\1(int)\2/';
 headers_list=(
     "arch/arm64/include/asm/atomic_ll_sc.h"         "$sed_rename_new"
     "arch/arm64/include/asm/atomic_lse.h"           "$sed_rename_new"
@@ -172,9 +174,10 @@ headers_list=(
     "include/linux/log2.h"                          "$sed_log2_constexpr"
     "include/linux/math.h"                          "$sed_remove_void"
     "include/linux/mm_types.h"                      "$sed_rename_new"
+        "include/linux/page-flags.h"                    ""
     "include/linux/pid.h"                           "$sed_rename_new"
     "include/linux/rbtree.h"                        "$sed_rename_new"
-    "include/linux/rcupdate.h"                      "$sed_rename_new"
+    "include/linux/rcupdate.h"                      "$sed_rename_new; $sed_rcu_init"
     "include/linux/rculist.h"                       "$sed_rename_new"
     "include/linux/seqlock.h"                       "$sed_seqprop"
     "include/linux/string.h"                        "$sed_rename_new"

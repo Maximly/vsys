@@ -59,32 +59,34 @@ namespace csupport {
 ////////////////////////////////////////////////////////////////////////////////
 
 // __builtin_choose_expr
+#if !(defined __has_builtin && __has_builtin(__builtin_choose_expr))
 #define __builtin_choose_expr(const_exp, exp1, exp2) ((const_exp) ? (exp1) : (exp2))
+#endif // __builtin_choose_expr
 
 // __builtin_constant_p
+#if !(defined __has_builtin && __has_builtin(__builtin_constant_p))
 template<typename> struct ConstExpr {  enum { result = 0 }; };
-template<typename T> struct ConstExpr<T volatile> { enum { result = 0 }; };
+template<typename T> struct ConstExpr<volatile T> { enum { result = 0 }; };
 template<typename T> struct ConstExpr<const T> { enum { result = 1 }; };
 template<typename T> struct ConstExpr<const volatile T> { enum { result = 1 }; };
-#define __builtin_constant_p(x) csupport::ConstExpr<typeof(x)>::result
+#define __builtin_constant_p(x) ({
+    typeof(x) builtin_constant_p_x = builtin_constant_p_x;
+    csupport::ConstExpr<typeof(builtin_constant_p_x)>::result; })
+#endif // __builtin_constant_p
 
 // __builtin_types_compatible_p
+#if !(defined __has_builtin && __has_builtin(__builtin_types_compatible_p))
 template<typename, typename> struct TypesCompatible { enum { result = 0 }; };
 template<typename T> struct TypesCompatible<T, T> { enum { result = 1 }; };
+template<typename T> struct TypesCompatible<T, const T> { enum { result = 1 }; };
+template<typename T> struct TypesCompatible<const T, T> { enum { result = 1 }; };
+template<typename T> struct TypesCompatible<T, volatile T> { enum { result = 1 }; };
+template<typename T> struct TypesCompatible<volatile T, T> { enum { result = 1 }; };
+template<typename T> struct TypesCompatible<const T, volatile T> { enum { result = 1 }; };
+template<typename T> struct TypesCompatible<volatile T, const T> { enum { result = 1 }; };
 template<typename T, size_t N> struct TypesCompatible<T[], T[N]> { enum { result = 1 }; };
 template<typename T, size_t N> struct TypesCompatible<T[N], T[]> { enum { result = 1 }; };
-template<typename T1, typename T2> struct TypesCompatible<T1, const T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<T1, volatile T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<T1, const volatile T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<const T1, T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<const T1, volatile T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<const T1, const volatile T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<volatile T1, T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<volatile T1, const T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<volatile T1, const volatile T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<const volatile T1, T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<const volatile T1, const T2> : TypesCompatible<T1, T2> {};
-template<typename T1, typename T2> struct TypesCompatible<const volatile T1, volatile T2> : TypesCompatible<T1, T2> {};
 #define __builtin_types_compatible_p(type1, type2) csupport::TypesCompatible<type1, type2>::result
+#endif // __builtin_types_compatible_p
 
 } // csupport
