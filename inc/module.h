@@ -10,7 +10,6 @@ Revision History:
 
 --*/
 #pragma once
-#include "base.h"
 #include <vector>
 #include <string>
 #include "strings.h"

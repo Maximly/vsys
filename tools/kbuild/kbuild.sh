@@ -143,7 +143,7 @@ add_header_path() {
 }
 
 #   Headers processing scripts
-sed_rename_new='s/\([[() *\t&>]\)\(new\|private\)\([] \t);,]\|->\)/\1\21\3/g'
+sed_rename_new='s/\([[() *\t&>]\)\(new\|private\|protected\|class\|namespace\)\([][ \t);,]\|->\)/\1\21\3/g'
 sed_init_union='s/^\(.*union \+{.*}[^;=]*\)\(;.*\)/\1 = {}\2/g'
 sed_remove_void='s/^\(.*\)((void)0)\(.*\)$/\1(0)\2/'
 sed_rename_const_void='s/^\(.*\)const void\(.*__nosave_begin.*\)$/\1const int\2/'
@@ -153,7 +153,11 @@ sed_hrtimer='s/^\(.*enum hrtimer_restart\)\([^{]*{.*\)$/\1 : int\2/'
 sed_log2_constexpr='s/^\(.*\)\(int\|bool\|long\)\( \)\(__ilog2_u32\|__ilog2_u64\|is_power_of_2\|__order_base_2\|__bits_per\)\((.*\)$/\1constexpr \2\3\4\5/';
 sed_fls_constexpr='s/^\(.*\)\(int\|long\)\( *\)\(fls\|fls64\|__fls\)\((.*\)$/\1constexpr \2\3\4\5/';
 sed_rcu_init='s/^\(.*define RCU_INITIALIZER(v)\).*$/\1 (v)/';
-#sed_test_bit='s/^\(.*test_bit(\)\(.*\)$/\1(int)\2/';
+sed_rcu_typeof='/typeof(\*p)/ s/\*//g';
+sed_page_folio='/^#define page_folio(.*$/ { N; N; s/^.*$/#define page_folio vsys_page_folio/; }';
+sed_invalid_uid='/^#define INVALID_\([GU]ID\|PROJID\).*$/ s/-1/UINT_MAX/'
+sed_mov_ki_pos='/^[^.]*\.ki_filp =.*$/ { N; N; N; N; s/^\([^.]*\.ki_filp =.*,\n\)\([^.]*\.ki_flags =.*\n\)\([^.]*\.ki_pos =[^\n]*\n\)\(.*\)$/\1\3\2\4/; }';
+sed_lt_from_rb='/^__lt_from_rb(struct rb_node \*node, int idx).*$/ { N; N; N; s/^\([^\{]*{\)[^\}]*\(\}.*\)$/\1\n\treturn (struct latch_tree_node *)((char*)container_of(node, struct latch_tree_node, node[0]) - sizeof(*node) * idx);\n\2/; }';
 headers_list=(
     "arch/arm64/include/asm/atomic_ll_sc.h"         "$sed_rename_new"
     "arch/arm64/include/asm/atomic_lse.h"           "$sed_rename_new"
@@ -166,21 +170,31 @@ headers_list=(
     "include/linux/atomic/atomic-arch-fallback.h"   "$sed_rename_new"
     "include/linux/atomic/atomic-long.h"            "$sed_rename_new"
     "include/linux/atomic/atomic-instrumented.h"    "$sed_rename_new"
-    "include/linux/build_bug.h"                     "$sed_disable_build_bug"
     "include/linux/bitmap.h"                        "$sed_rename_new"
+    "include/linux/build_bug.h"                     "$sed_disable_build_bug"
+    "include/linux/fs.h"                            "$sed_rename_new; $sed_mov_ki_pos"
     "include/linux/hrtimer.h"                       "$sed_hrtimer"
+    "include/linux/ioasid.h"                        "$sed_rename_new"
+    "include/linux/ioprio.h"                        "$sed_rename_new"
+    "include/linux/kobject.h"                       "$sed_rename_new"
     "include/linux/list.h"                          "$sed_rename_new"
     "include/linux/llist.h"                         "$sed_rename_new"
     "include/linux/log2.h"                          "$sed_log2_constexpr"
     "include/linux/math.h"                          "$sed_remove_void"
     "include/linux/mm_types.h"                      "$sed_rename_new"
-        "include/linux/page-flags.h"                    ""
+    "include/linux/mmzone.h"                        "$sed_rename_new"
+    "include/linux/page-flags.h"                    "$sed_page_folio"
     "include/linux/pid.h"                           "$sed_rename_new"
+    "include/linux/projid.h"                        "$sed_invalid_uid"
     "include/linux/rbtree.h"                        "$sed_rename_new"
-    "include/linux/rcupdate.h"                      "$sed_rename_new; $sed_rcu_init"
+    "include/linux/rbtree_latch.h"                  "$sed_lt_from_rb"
     "include/linux/rculist.h"                       "$sed_rename_new"
+    "include/linux/rcupdate.h"                      "$sed_rename_new; $sed_rcu_init; $sed_rcu_typeof"
     "include/linux/seqlock.h"                       "$sed_seqprop"
     "include/linux/string.h"                        "$sed_rename_new"
+    "include/linux/sysfs.h"                         "$sed_rename_new"
+    "include/linux/uidgid.h"                        "$sed_invalid_uid"
+    "include/linux/umh.h"                           "$sed_rename_new"
     "include/linux/wait.h"                          "$sed_rename_new"
     )
 
