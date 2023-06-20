@@ -8,7 +8,6 @@
 #
 ###############################################################################
 cmake_minimum_required(VERSION 3.0)
-#set(CMAKE_C_COMPILER "echo")
 
 project(vsys)
 file(GLOB VSYS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")

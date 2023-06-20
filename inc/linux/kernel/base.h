@@ -65,5 +65,22 @@ extern "C" {
 #undef true
 #define _false 0
 #define _true 1
+// Rollback defines in kernel headers
 #undef swap
+#undef inline
+#undef current
+#undef __alloc_size__
+#undef abs
+#undef memcpy
+#undef memmove
+#undef memset
 
+
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Prevent STL headers for types already defined in Linux headers
+//
+////////////////////////////////////////////////////////////////////////////////
+#define _BITS_STDINT_UINTN_H
+#define _BITS_STDINT_INTN_H	1
+#define	_SYS_TYPES_H 1

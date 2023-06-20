@@ -13,8 +13,6 @@ Revision History:
 // Disable Windows CRT warnings
 #define _CRT_SECURE_NO_WARNINGS
 #include "strings.h"
-#include <wchar.h>
-#include <cstring>
 
 using namespace vsys;
 

@@ -72,9 +72,14 @@ sed_cxx_compiler_options='
 
 # Sed script for parsing linker parameters
 sed_linker_options='
-    s/^[^:]*:= *\([^ ].\) [^-]*\(-.*\) -o.*$/\
-# Linker \1\
-target_link_options(${PROJECT_NAME} PRIVATE \2)/p;'
+    /^[^:]*:= .*-o.*$/ {
+        s/^[^:]*:= *\([^ ].\) [^-]*\(-.*\) -o.*$/\2/;
+        s/ \+/,/g;
+        s/^\(.*\)$/\
+target_link_options(${PROJECT_NAME} BEFORE PRIVATE LINKER:\1)/p;
+    }
+    '
+
 
 # Sed script for moving -include options to kernel/linux/_kernel.h header to work around cmake' options de-dup feature
 sed_kernel_h='s/^-include.*\(linux.*\)$/#include <\1>/p'
