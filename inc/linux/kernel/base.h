@@ -26,7 +26,7 @@ typedef bool _Bool;
 #define asmlinkage
 
 //  Define empty undeclared enums or forward-declare enums
-enum aarch64_insn_encoding_class {};
+enum aarch64_insn_encoding_class : int;
 enum hrtimer_restart : int;
 
 // Kernel __is_constexpr redesigned on templates
