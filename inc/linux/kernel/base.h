@@ -81,6 +81,12 @@ extern "C" {
 //  Prevent STL headers for types already defined in Linux headers
 //
 ////////////////////////////////////////////////////////////////////////////////
+#ifdef _LINUX_TYPES_H
 #define _BITS_STDINT_UINTN_H
-#define _BITS_STDINT_INTN_H	1
-#define	_SYS_TYPES_H 1
+#define _BITS_STDINT_INTN_H 1
+#define _SYS_TYPES_H 1
+#endif // _LINUX_TYPES_H
+
+#ifdef _LINUX_SCHED_H
+#define _SCHED_H
+#endif // _LINUX_SCHED_H
