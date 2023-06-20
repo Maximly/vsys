@@ -86,6 +86,7 @@ extern "C" {
 #define _BITS_STDINT_INTN_H 1
 #define _SYS_TYPES_H 1
 #define __timer_t_defined 1
+#define __struct_tm_defined 1
 #endif // _LINUX_TYPES_H
 
 #ifdef _LINUX_SCHED_H
