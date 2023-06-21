@@ -8,5 +8,5 @@
 - Linux kernel headers are patched automatically to be included from C++ sources (tested on Ubuntu/Rasberry Pi arm64, x86 does not work yet - simply because I prefer arm but I promise to support x86 as well)
 - Linux kernel modules can now build and link correctly under Ubuntu arm64
 
-**Current challenges:**
+**Currently working on:**
 - Undefined symbols implementation in Linux kernel (used by STL string, vector, etc)
