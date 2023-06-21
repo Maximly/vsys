@@ -79,8 +79,8 @@ cxx_add_options='
     -include base.h
     -fmax-errors=5
     '
-sed_options_list_to_string='s/ \+/\\|/g';
-cxx_remove_options_list=$(echo $cxx_remove_options | sed -e "$sed_options_list_to_string");
+sed_options_list_to_string='s/ \+/\\|/g'
+cxx_remove_options_list=$(echo $cxx_remove_options | sed -e "$sed_options_list_to_string")
 sed_cxx_compiler_options='
     s/^\(-std=gnu\)11\(.*\)$/\1++14\2/p;
     /^\(-std=gnu\|'$cxx_remove_options_list'\).*$/! p;
@@ -227,12 +227,24 @@ headers_list=(
 headers_size=${#headers_list[@]}
 echo $bold"VSYS: Patching $(($headers_size / 2)) headers"$normal
 
+# Detect current platform
+platform=$(uname -m)
+platform=${platform,,}
+if [ "$platform" = "aarch64" ]; then
+    platform="arm64"
+fi
+
 i=0
 while [ $i -lt $headers_size ]; do
     header=${headers_list[$i]}
     script=${headers_list[$i + 1]}
     i=$(($i + 2))
     if [[ -f "$kernel_headers/$header" ]]; then
+        arch_header=$(echo "$header" | sed -n -e "s/^arch\/\([^\/]\+\)\/.*$/\1/p")
+        if [ "$arch_header" != "" ] && [ "$arch_header" != "$platform" ]; then
+            echo "  $header is skipped (not for this platform)"
+            continue
+        fi
         echo "  $header"
         mkdir -p $(dirname $inc_generated_dir/$header)
         add_header_path $(dirname $header)
