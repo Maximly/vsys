@@ -1,6 +1,6 @@
 # vsys
 **Cross-platform kernel module/driver development in C++/Cmake**
-- Linux kernel support is being implemented. 
+- Linux kernel C++ support is being implemented. 
 - Mac/Windows kernel is next.
 
 **What's done so far:**
