@@ -10,7 +10,10 @@
 cmake_minimum_required(VERSION 3.0)
 
 project(vsys)
-file(GLOB VSYS_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB VSYS_SRC
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/utils/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/vcrt/*.cpp")
 add_library(${PROJECT_NAME} STATIC ${VSYS_SRC})
 include("tools/cmake/global.cmake")
 

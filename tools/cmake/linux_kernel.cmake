@@ -44,9 +44,10 @@ message("  Kernel modules: ${KERNEL_MODULES} (${KERNEL_MAKEFILE})")
 #   Generate kernel compiler and linker parameters
 ###############################################################################
 set(CMAKE_KBUILD ${CMAKE_TOOLS_DIR}/generated/kbuild.cmake)
+
 if (NOT EXISTS ${CMAKE_KBUILD})
     execute_process(
-        COMMAND ./kbuild.sh ${KERNEL_HEADERS}
+        COMMAND flock /var/lock/vsys_kbuild.lock --command "./kbuild.sh ${KERNEL_HEADERS}"
         WORKING_DIRECTORY ${CMAKE_TOOLS_DIR}/../kbuild)
 endif()
 if (EXISTS ${CMAKE_KBUILD})

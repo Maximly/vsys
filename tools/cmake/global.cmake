@@ -20,10 +20,13 @@ set(CMAKE_TOOLS_DIR ${CMAKE_CURRENT_LIST_DIR})
 ###############################################################################
 set(VSYS_INCLUDE "${CMAKE_TOOLS_DIR}/../../inc")
 set(VSYS_SOURCE "${CMAKE_TOOLS_DIR}/../../src")
-target_include_directories(${PROJECT_NAME} PRIVATE ${VSYS_INCLUDE})
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    ${VSYS_INCLUDE}
+    ${VSYS_INCLUDE}/targets)
 target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
     $<$<AND:$<NOT:$<CXX_COMPILER_ID:MSVC>>,$<NOT:$<COMPILE_LANGUAGE:C>>>:-Wall -Wextra -Werror>)
+target_compile_options(${PROJECT_NAME} PRIVATE -include base.h)
 
 
 ###############################################################################

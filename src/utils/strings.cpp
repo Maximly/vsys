@@ -12,10 +12,10 @@ Revision History:
 #include "base.h"
 // Disable Windows CRT warnings
 #define _CRT_SECURE_NO_WARNINGS
-#include "strings.h"
+#include "utils/strings.h"
 
 using namespace vsys;
-
+/*
 ////////////////////////////////////////////////////////////////////////////////
 //  Strings support
 ////////////////////////////////////////////////////////////////////////////////
@@ -47,3 +47,4 @@ vsys::A2W(const char* s)
     }
     return str;
 }
+*/

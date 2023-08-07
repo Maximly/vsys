@@ -16,6 +16,6 @@ class MyModule : public vsys::Module
 {
 protected:
     virtual bool OnLoad();
-    virtual int OnRun();
+    virtual bool OnRun();
     virtual void OnUnload();
 };

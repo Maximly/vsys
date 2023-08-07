@@ -9,9 +9,8 @@ Revision History:
     16/05/2023 - Maxim Lyadvinsky - Created
 
 --*/
-//#include "base.h"
 #include "module.h"
-#include "strings.h"
+#include "vcrt/string.h"
 
 using namespace vsys;
 
@@ -19,7 +18,9 @@ using namespace vsys;
 //  Init/done
 ////////////////////////////////////////////////////////////////////////////////
 Module* Module::module_ = nullptr;
-Module::Module()
+Module::Module() :
+    args_count_(0),
+    args_(nullptr)
 {
     if (Instance() == nullptr)
         module_ = this;
@@ -30,39 +31,37 @@ Module::~Module()
 {
     if (Instance() == this)
         module_ = nullptr;
+    for (int i = 0; i < args_count_; i++)
+    {
+        delete args_[i];
+    }
+    delete args_;
 }
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
 //  Platform info
 ////////////////////////////////////////////////////////////////////////////////
-std::string
-Module::GetBinaryInfoA()
-{
-    std::string info;
+const char* Module::binary_info_ =
     #ifdef VSYS_MAC
-    info = "Darwin ";
+    "Darwin "
     #elif defined VSYS_WIN
-    info = "Windows ";
+    "Windows "
     #elif defined VSYS_LIN
-    info = "Linux ";
+    "Linux "
     #else
-    info = "Undefined ";
+    "Undefined "
     #endif // VSYS_MAC
     #ifdef VSYS_USER
-    info += "user mode ";
+    "user mode "
     #else
-    info += "kernel mode ";
+    "kernel mode "
     #endif // VSYS_USER
     #ifdef VSYS_X64
-    info += "x64";
+    "x64";
     #elif defined VSYS_A64
-    info += "arm64";
-    #endif // VSYS_MAC
-    return info;
-}
-
+    "arm64";
+    #endif // VSYS_X64
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -72,21 +71,40 @@ Module::GetBinaryInfoA()
 int
 main(int argc, char* argv[])
 {
-    int result = -1;
     Module* module = Module::Instance();
-    if (module) {
-        for (int arg = 0; arg < argc; arg++) {
-            module->args_.push_back(A2W(argv[arg]));
+    bool result = module != nullptr;
+    if (result && argc > 0) {
+        module->args_count_ = argc;
+        module->args_ = new char*[argc];
+        if (module->args_) {
+            for (int arg = 0; arg < argc; arg++) {
+                module->args_[arg] = new char[strlen(argv[arg]) + 1];
+                if (module->args_[arg]) {
+                    strcpy(module->args_[arg], argv[arg]);
+                } else {
+                    result = false;
+                    break;
+                }
+            }
+        } else {
+            result = false;
         }
+    }
+    if (result) {
         if (module->OnLoad()) {
             result = module->OnRun();
             module->OnUnload();
         }
     }
-    return result;
+    return result ? 0 : -1;
 }
 #endif // VSYS_USER
 
+
+////////////////////////////////////////////////////////////////////////////////
+//  Platform-specific entry points
+////////////////////////////////////////////////////////////////////////////////
+#if defined VSYS_KERNEL && defined VSYS_LIN
 extern "C"
 {
 
@@ -107,3 +125,5 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Maxim Lyadvinsky");
 
 }
+
+#endif //  VSYS_KERNEL && VSYS_LIN

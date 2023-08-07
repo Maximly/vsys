@@ -11,8 +11,8 @@ Revision History:
 --*/
 #include "base.h"
 #include <stdarg.h>
-#include <stdio.h>
-#include "debug.h"
+#include "vcrt/stdio.h"
+#include "utils/debug.h"
 
 #ifdef VSYS_DBG
 

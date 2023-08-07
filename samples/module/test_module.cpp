@@ -10,7 +10,6 @@ Revision History:
 
 --*/
 #include "test_module.h"
-#include "debug.h"
 
 static MyModule myModule;
 
@@ -22,16 +21,16 @@ MyModule::OnLoad()
         "    Path: %s\n"
         "    Binary type: %s",
         GetArgs(),
-        GetArgA().c_str(),
-        GetBinaryInfoA().c_str()));
+        GetArg(),
+        GetBinaryInfo()));
     return true;
 }
 
-int
+bool
 MyModule::OnRun()
 {
     DbgPrint(("OnRun"));
-    return 0;
+    return true;
 }
 
 

@@ -10,9 +10,6 @@ Revision History:
 
 --*/
 #pragma once
-#include <vector>
-#include <string>
-#include "strings.h"
 
 #ifdef VSYS_USER
 int main(int argc, char* argv[]);
@@ -31,15 +28,13 @@ public:
     ////////////////////////////////////////////////////////////////////////////////
     //  Startup arguments
     ////////////////////////////////////////////////////////////////////////////////
-    int GetArgs() const { return static_cast<int>(args_.size()); }
-    std::wstring GetArg(int arg = 0) const { return args_[arg]; }
-    std::string GetArgA(int arg = 0) const { return W2A(GetArg(arg).c_str());}
+    int GetArgs() const { return args_count_; }
+    const char* GetArg(int arg = 0) const { return arg < GetArgs() ? args_[arg] : nullptr; }
 
     ////////////////////////////////////////////////////////////////////////////////
     //  Platform and binary info
     ////////////////////////////////////////////////////////////////////////////////
-    static std::wstring GetBinaryInfo() { return A2W(GetBinaryInfoA().c_str()); }
-    static std::string GetBinaryInfoA();
+    static const char* GetBinaryInfo() { return binary_info_; }
 
 protected:
     ////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +43,7 @@ protected:
     Module();
     virtual ~Module();
     virtual bool OnLoad() { return true; }
-    virtual int OnRun() { return 0; }
+    virtual bool OnRun() { return true; }
     virtual void OnUnload() {}
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +55,9 @@ protected:
 
 private:
     static Module* module_;
-    std::vector<std::wstring> args_;
+    int args_count_;
+    char** args_;
+    static const char* binary_info_;
 };
 
 } /* vsys */

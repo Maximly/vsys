@@ -25,20 +25,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec6337a2-246a-41f5-bcbf-85618443d28a" name="Changes" comment="adding rsbpi paths">
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/.Module.symvers.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/.kbuild.ko.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/.kbuild.mod.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/.kbuild.mod.o.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/.kbuild.o.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/.modules.order.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/Module.symvers" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.ko" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.mod.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.mod.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/kbuild/modules.order" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/base.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/arch/arm64/include/asm/atomic_ll_sc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/arch/arm64/include/asm/atomic_lse.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/arch/arm64/include/asm/barrier.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/arch/arm64/include/asm/cmpxchg.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/arch/arm64/include/asm/insn.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/asm-generic/bitops/builtin-__fls.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/asm-generic/bitops/builtin-fls.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/asm-generic/bitops/fls64.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/asm-generic/sections.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/atomic/atomic-arch-fallback.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/atomic/atomic-instrumented.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/atomic/atomic-long.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/bitmap.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/build_bug.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/fs.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/hrtimer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/ioasid.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/ioprio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/kobject.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/llist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/log2.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/math.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/mm_types.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/mmzone.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/page-flags.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/pid.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/projid.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/rbtree.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/rbtree_latch.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/rculist.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/rcupdate.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/seqlock.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/string.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/sysfs.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/uidgid.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/umh.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/include/linux/wait.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/generated/precompiler.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/linux/kernel/seqprop.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/targets/targets.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/debug.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/utils/strings.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/vcrt/stdio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inc/vcrt/string.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/targets/linux/kernel/generated/module.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/debug.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/strings.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/vcrt/stdio.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/base.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/csupport.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/csupport.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/debug.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/linux/kernel/base.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/linux/kernel/seqprop.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/module.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/module.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/strings.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/targets.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/module/test_module.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/samples/module/test_module.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/samples/module/test_module.h" beforeDir="false" afterPath="$PROJECT_DIR$/samples/module/test_module.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/debug.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/module.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/strings.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/cmake/global.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/tools/cmake/global.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/cmake/linux_kernel.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/tools/cmake/linux_kernel.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,10 +110,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": -1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2RYUwscnZVcKRViGEeA5ns71xFC" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -84,14 +138,19 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CMakeSettings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CPPToolchains&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inc/utils" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.test_module">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="test_module" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vsys" TARGET_NAME="test_module" CONFIG_NAME="Kernel Debug" RUN_TARGET_PROJECT_NAME="vsys" RUN_TARGET_NAME="test_module">
@@ -172,7 +231,17 @@
       <workItem from="1690213581196" duration="23000" />
       <workItem from="1690297848476" duration="1660000" />
       <workItem from="1691408657608" duration="23000" />
-      <workItem from="1691408910311" duration="5809000" />
+      <workItem from="1691408910311" duration="7600000" />
+      <workItem from="1691423979366" duration="1496000" />
+      <workItem from="1691425743348" duration="425000" />
+      <workItem from="1691426195804" duration="187000" />
+      <workItem from="1691431322892" duration="41000" />
+      <workItem from="1691431486595" duration="1714000" />
+      <workItem from="1691433227908" duration="32000" />
+      <workItem from="1691434939262" duration="4131000" />
+      <workItem from="1691439086803" duration="2061000" />
+      <workItem from="1691441191162" duration="2116000" />
+      <workItem from="1691443442926" duration="992000" />
     </task>
     <task id="LOCAL-00001" summary="adding rsbpi paths">
       <created>1685002399175</created>
@@ -218,5 +287,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="adding rsbpi paths" />
     <option name="LAST_COMMIT_MESSAGE" value="adding rsbpi paths" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
