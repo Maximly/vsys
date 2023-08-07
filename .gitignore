@@ -7,5 +7,5 @@ Makefile
 *.a
 *.tmp
 tools/cmake/generated
-inc/linux/kernel/generated
-src/linux/kernel/generated
+inc/targets/linux/kernel/generated
+src/targets/linux/kernel/generated
