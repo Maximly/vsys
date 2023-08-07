@@ -100,6 +100,14 @@ sed_linker_options='
 sed_kernel_h='s/^-include.*\(linux.*\)$/#include <\1>/p'
 sed_remove_includes='/^-include.*$/! p'
 
+# Sed script for fixing designator order for field ‘module::arch'
+sed_fix_module_arch='
+    /^#ifdef CONFIG_MODULE_UNLOAD$/ {
+        N; N; N; N;
+        s/^\(.*\n\)\([ 	]*\.arch.*\n\)\(.*\)$/\2\1\3/
+    }
+    '
+
 
 ###############################################################################
 #
@@ -144,7 +152,7 @@ sed -n -e "$sed_linker_options" <.kbuild.ko.cmd >>$kbuild_cmake
 
 echo $bold'VSYS: Generating module.cpp'$normal
 echo -e "#include \"base.h\"\n\nextern \"C\" {\n" >$module_cpp
-cat kbuild.mod.c >>$module_cpp
+sed -e "$sed_fix_module_arch" <kbuild.mod.c >>$module_cpp
 echo -e "\n};" >>$module_cpp
 
 
