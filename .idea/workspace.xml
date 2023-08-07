@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="vsys" targetName="test_module" />
+      <config projectName="vsys" targetName="vsys" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Kernel Debug" ENABLED="true" GENERATION_DIR="build/Kernel/Debug" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DVSYS_KERNEL=1" NO_GENERATOR="true" />
+      <configuration PROFILE_NAME="Kernel Release" ENABLED="true" GENERATION_DIR="build/Kernel/Release" CONFIG_NAME="Release" GENERATION_OPTIONS="-DVSYS_KERNEL=1" NO_GENERATOR="true" />
+      <configuration PROFILE_NAME="User Debug" ENABLED="true" GENERATION_DIR="build/User/Debug" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DVSYS_USER=1" NO_GENERATOR="true" />
+      <configuration PROFILE_NAME="User Release" ENABLED="true" GENERATION_DIR="build/User/Release" CONFIG_NAME="Release" GENERATION_OPTIONS="-DVSYS_USER=1" NO_GENERATOR="true" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ec6337a2-246a-41f5-bcbf-85618443d28a" name="Changes" comment="adding rsbpi paths">
+      <change beforePath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:User Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2RYUwscnZVcKRViGEeA5ns71xFC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Volumes/Develop/vsys/CMakeLists.txt",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "CMakeSettings",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="CMake Application.test_module">
+    <configuration name="test_module" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vsys" TARGET_NAME="test_module" CONFIG_NAME="Kernel Debug" RUN_TARGET_PROJECT_NAME="vsys" RUN_TARGET_NAME="test_module">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="vsys" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vsys" TARGET_NAME="vsys" CONFIG_NAME="Kernel Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.vsys" />
+      <item itemvalue="CMake Application.test_module" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec6337a2-246a-41f5-bcbf-85618443d28a" name="Changes" comment="" />
+      <created>1684315958430</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684315958430</updated>
+      <workItem from="1684315959536" duration="237000" />
+      <workItem from="1684316219659" duration="3334000" />
+      <workItem from="1684331274816" duration="1082000" />
+      <workItem from="1684416071378" duration="9018000" />
+      <workItem from="1684491236943" duration="3070000" />
+      <workItem from="1684747767129" duration="462000" />
+      <workItem from="1684748290436" duration="156000" />
+      <workItem from="1684749204652" duration="1443000" />
+      <workItem from="1684828303329" duration="7852000" />
+      <workItem from="1684838193348" duration="17864000" />
+      <workItem from="1684869345307" duration="8302000" />
+      <workItem from="1684917464030" duration="1133000" />
+      <workItem from="1684924468114" duration="5763000" />
+      <workItem from="1685001436835" duration="7944000" />
+      <workItem from="1685099874212" duration="2492000" />
+      <workItem from="1685105499952" duration="11448000" />
+      <workItem from="1685173264887" duration="20442000" />
+      <workItem from="1685348684504" duration="3470000" />
+      <workItem from="1685371221509" duration="4471000" />
+      <workItem from="1685431099643" duration="15380000" />
+      <workItem from="1685451386878" duration="696000" />
+      <workItem from="1685461049412" duration="3035000" />
+      <workItem from="1685522831518" duration="12561000" />
+      <workItem from="1685606202515" duration="51000" />
+      <workItem from="1685606429177" duration="21501000" />
+      <workItem from="1685699371928" duration="248000" />
+      <workItem from="1685700013491" duration="9245000" />
+      <workItem from="1685712440087" duration="3897000" />
+      <workItem from="1685776920698" duration="37731000" />
+      <workItem from="1685865803712" duration="285000" />
+      <workItem from="1685872291789" duration="8929000" />
+      <workItem from="1685953746513" duration="21456000" />
+      <workItem from="1686036358211" duration="25133000" />
+      <workItem from="1686121932337" duration="12717000" />
+      <workItem from="1686142400729" duration="2551000" />
+      <workItem from="1686317727696" duration="5080000" />
+      <workItem from="1686390004405" duration="994000" />
+      <workItem from="1686391808150" duration="10535000" />
+      <workItem from="1686850827007" duration="7227000" />
+      <workItem from="1686858510935" duration="7264000" />
+      <workItem from="1686901904137" duration="16878000" />
+      <workItem from="1686929824781" duration="1220000" />
+      <workItem from="1687097261328" duration="2622000" />
+      <workItem from="1687190569385" duration="3430000" />
+      <workItem from="1687248541190" duration="5826000" />
+      <workItem from="1687260139133" duration="9940000" />
+      <workItem from="1687342673211" duration="18649000" />
+      <workItem from="1687426751981" duration="427000" />
+      <workItem from="1689675346687" duration="276000" />
+      <workItem from="1689675677902" duration="12000" />
+      <workItem from="1689677977989" duration="52000" />
+      <workItem from="1689769038434" duration="625000" />
+      <workItem from="1690213581196" duration="23000" />
+      <workItem from="1690297848476" duration="1660000" />
+      <workItem from="1691408657608" duration="23000" />
+    </task>
+    <task id="LOCAL-00001" summary="adding rsbpi paths">
+      <created>1685002399175</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685002399175</updated>
+    </task>
+    <task id="LOCAL-00002" summary="adding rsbpi paths">
+      <created>1685003323274</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685003323274</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.d" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="adding rsbpi paths" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding rsbpi paths" />
+  </component>
+</project>
