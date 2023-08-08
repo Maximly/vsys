@@ -10,19 +10,32 @@ Revision History:
 
 --*/
 #include "base.h"
-#include <stdarg.h>
-#include "vcrt/stdio.h"
-#include "utils/debug.h"
+#ifdef VSYS_USER
+#include "stdarg.h"
+#include "stdio.h"
+#endif // VSYS_USER
 
 #ifdef VSYS_DBG
 
 static const int vsysDbgPref = 64;
 static char vsysPref[vsysDbgPref] = {};
 
+#ifdef VSYS_LINKERNEL
+#define printf printk
+#endif // VSYS_LINKERNEL
+
 void
-_DbgPrintRawVA(const char* p, va_list args)
+_DbgPrintRawVa(bool ln, const char* p, va_list args)
 {
-    vprintf(p, args);
+    char buf[256];
+    int result = vsnprintf(buf, sizeof(buf), p, args);
+    if (result > 0) {
+        if (ln && result < (static_cast<int>(sizeof(buf)) - 1)) {
+            buf[result] = '\n';
+            buf[result + 1] = 0;
+        }
+        printf("%s", buf);
+    }
 }
 
 
@@ -31,7 +44,7 @@ _DbgPrintRaw(const char* p, ...)
 {
     va_list args;
     va_start(args, p);
-    _DbgPrintRawVA(p, args);
+    _DbgPrintRawVa(false, p, args);
     va_end(args);
 }
 
@@ -41,10 +54,10 @@ _DbgPrint(const char* p, ...)
 {
     va_list args;
     va_start(args, p);
-    printf("%s", vsysPref);
-    _DbgPrintRawVA(p, args);
+    if (vsysPref[0] != 0)
+        printf("%s", vsysPref);
+    _DbgPrintRawVa(true, p, args);
     va_end(args);
-    printf("\n");
 }
 
 
