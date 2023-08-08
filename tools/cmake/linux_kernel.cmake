@@ -43,6 +43,9 @@ message("  Kernel modules: ${KERNEL_MODULES} (${KERNEL_MAKEFILE})")
 ###############################################################################
 #   Generate kernel compiler and linker parameters
 ###############################################################################
+if (VSYS_MOD)
+    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".ko")
+endif()
 set(CMAKE_KBUILD ${CMAKE_TOOLS_DIR}/generated/kbuild.cmake)
 
 if (NOT EXISTS ${CMAKE_KBUILD})
