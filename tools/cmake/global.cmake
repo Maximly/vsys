@@ -90,3 +90,18 @@ include("${CMAKE_TOOLS_DIR}/detectos.cmake")
 if (VSYS_HOST_LINUX AND VSYS_KERNEL)
     include("${CMAKE_TOOLS_DIR}/linux_kernel.cmake")
 endif()
+
+
+###############################################################################
+#   Strip binary
+###############################################################################
+if (VSYS_MOD AND VSYS_HOST_LINUX AND VSYS_REL)
+    if (VSYS_KERNEL)
+        set(VSYS_STRIP --strip-unneeded)
+    else()
+        set(VSYS_STRIP --strip-all)
+    endif()
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND echo "Striping debug symbols [${VSYS_STRIP}] from" $<TARGET_FILE:${PROJECT_NAME}>
+        COMMAND ${CMAKE_STRIP} ${VSYS_STRIP} $<TARGET_FILE:${PROJECT_NAME}>)
+endif()
