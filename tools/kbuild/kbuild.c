@@ -26,5 +26,5 @@ module_init(kbuild_init);
 module_exit(kbuild_exit);
 
 MODULE_DESCRIPTION("Empty linux kernel module to catch compiler/linker options");
-MODULE_LICENSE("GPL");
+MODULE_LICENSE("Public");
 MODULE_AUTHOR("Maxim Lyadvinsky");
