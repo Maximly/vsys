@@ -5,9 +5,9 @@ Abstract:
     Platform-specific defines and includes. Supported targets and options:
     ----------------------------------------------------------------------
         OSes:
-            Mac (m)         VSYS_MAC
-            Windows (w)     VSYS_WIN
-            Linux (l)       VSYS_LIN
+            Mac (m)         VSYS_MAC, VSYS_MACUSER, VSYS_MACKERNEL
+            Windows (w)     VSYS_WIN, VSYS_WINUSER, VSYS_WINKERNLE
+            Linux (l)       VSYS_LIN, VSYS_LINUSER, VSYS_LINKERNEL
             EFI (e)         VSYS_EFI
         Processors:
             arm64 (a64)     VSYS_A64
@@ -69,9 +69,33 @@ Revision History:
 
 ////////////////////////////////////////////////////////////////////////////////
 //
+//  Additional defines
+//
+////////////////////////////////////////////////////////////////////////////////
+#if defined VSYS_KERNEL
+    #if defined VSYS_LIN
+    #define VSYS_LINKERNEL
+    #elif defined VSYS_WIN
+    #define VSYS_WINKERNEL
+    #elif defined VSYS_MAC
+    #define VSYS_MACKERNEL
+    #endif // VSYS_LIN
+#elif defined VSYS_USER
+    #if defined VSYS_LIN
+    #define VSYS_LINUSER
+    #elif defined VSYS_WIN
+    #define VSYS_WINUSER
+    #elif defined VSYS_MAC
+    #define VSYS_MACUSER
+    #endif // VSYS_LIN
+#endif // VSYS_KERNEL
+
+
+////////////////////////////////////////////////////////////////////////////////
+//
 //  Linux kernel defines
 //
 ////////////////////////////////////////////////////////////////////////////////
-#if defined VSYS_KERNEL && defined VSYS_LIN
+#ifdef VSYS_LINKERNEL
 #include "linux/kernel/base.h"
-#endif // VSYS_KERNEL && VSYS_LIN
+#endif // VSYS_LINKERNEL
