@@ -10,7 +10,7 @@ Revision History:
 
 --*/
 #include "module.h"
-#include "vcrt/string.h"
+#include "vcrt/crtinit.h"
 
 using namespace vsys;
 
@@ -65,7 +65,7 @@ const char* Module::binary_info_ =
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Platform-specific entry points
+//  Platform-specific entry points: VSYS_USER
 ////////////////////////////////////////////////////////////////////////////////
 #ifdef VSYS_USER
 int
@@ -102,28 +102,30 @@ main(int argc, char* argv[])
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Platform-specific entry points
+//  Platform-specific entry points: VSYS_LINKERNEL
 ////////////////////////////////////////////////////////////////////////////////
-#if defined VSYS_KERNEL && defined VSYS_LIN
+#if defined VSYS_LINKERNEL
 extern "C"
 {
 
 int __init kbuild_init(void)
 {
-    return 0;
+    DbgPrint(("%s: module_init entered", THIS_MODULE->name));
+    bool result = InitCrt();
+    DbgPrint(("%s: module_init status is %s", THIS_MODULE->name, result ? "ok (loaded)" : "failed (not loaded)"));
+    return result ? 0 : -1;
 }
 
 void __exit kbuild_exit(void)
 {
+    DbgPrint(("%s: module_exit enetered", THIS_MODULE->name));
+    DoneCrt();
+    DbgPrint(("%s: module_exit exited (unloaded)", THIS_MODULE->name));
 }
 
 module_init(kbuild_init);
 module_exit(kbuild_exit);
 
-MODULE_DESCRIPTION("Empty linux kernel module to catch compiler/linker options");
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Maxim Lyadvinsky");
-
 }
 
-#endif //  VSYS_KERNEL && VSYS_LIN
+#endif //  VSYS_LINKERNEL
