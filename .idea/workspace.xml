@@ -25,21 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec6337a2-246a-41f5-bcbf-85618443d28a" name="Changes" comment="adding rsbpi paths">
-      <change afterPath="$PROJECT_DIR$/inc/vcrt/crtinit.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/samples/module/targets/linux/kernel/generated/module.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/vcrt/crtinit.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/base.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/targets/targets.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/targets/targets.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/utils/strings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/vcrt/stdio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/inc/vcrt/string.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/samples/module/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/samples/module/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/module.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/debug.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/strings.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vcrt/stdio.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/cmake/global.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/tools/cmake/global.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/cmake/linux_kernel.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/tools/cmake/linux_kernel.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/kbuild/kbuild.c" beforeDir="false" afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,9 +85,9 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.test_module">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="test_module" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="vsys" TARGET_NAME="test_module" CONFIG_NAME="Kernel Debug" RUN_TARGET_PROJECT_NAME="vsys" RUN_TARGET_NAME="test_module">
@@ -195,7 +185,8 @@
       <workItem from="1691503841856" duration="4057000" />
       <workItem from="1691508932522" duration="78000" />
       <workItem from="1691509017655" duration="1155000" />
-      <workItem from="1691510182818" duration="879000" />
+      <workItem from="1691510182818" duration="1601000" />
+      <workItem from="1691518897406" duration="8262000" />
     </task>
     <task id="LOCAL-00001" summary="adding rsbpi paths">
       <created>1685002399175</created>
