@@ -96,6 +96,7 @@ sed_linker_options='
     /^[^:]*:= .*-o.*$/ {
         s/^[^:]*:= *\([^ ].\) [^-]*\(-.*\) -o.*$/\2/;
         s/ \+/,/g;
+        s/-m[^,]*,//; # remove -m option to avoid ld warning "-z relro ignored"
         s/^\(.*-T,\)\(.*\)$/\1${KERNEL_HEADERS}\/\2/;
         s/^\(.*\)$/target_link_options(${PROJECT_NAME} BEFORE PRIVATE -r LINKER:\1)/p;
     }
