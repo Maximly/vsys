@@ -6,6 +6,4 @@ Makefile
 .DS_Store
 *.a
 *.tmp
-tools/cmake/generated
-inc/targets/linux/kernel/generated
-src/targets/linux/kernel/generated
+**/generated
