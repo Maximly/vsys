@@ -13,7 +13,9 @@ Revision History:
 #include "utils/csupport.h"
 #include "targets/targets.h"
 #include "utils/debug.h"
-#include "utils/strings.h"
+#ifdef VSYS_USER
+#include <string.h>
+#endif // VSYS_USER
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
