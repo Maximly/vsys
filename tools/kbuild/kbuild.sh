@@ -34,11 +34,11 @@ kbuild_cmake_tmp=${kbuild_cmake}.tmp
 kbuild_cmake_c_tmp=${kbuild_cmake}_c.tmp
 kbuild_cmake_cxx_tmp=${kbuild_cmake}_cxx.tmp
 inc_generated_dir=../../inc/targets/linux/kernel/generated
-src_generated_dir=../../src/targets/linux/kernel/generated
+src_generated_dir=targets/linux/kernel/generated
 precompiler_h=$inc_generated_dir/precompiler.h
-mkdir -p $src_generated_dir
 mkdir -p $cmake_generated_dir
-module_cpp=$(cd "$src_generated_dir" && pwd)/module.cpp
+module_cpp=$src_generated_dir/module.cpp
+module_cpp_template=$(cd "$cmake_generated_dir" && pwd)/kbuild-module.cpp.cmake
 
 # Kbuild cleanup
 cleanup="rm -rf *.o *~ core .depend .*.cmd *.ko *.mod *.mod.c .tmp_versions *.order *.symvers $kbuild_cmake_tmp $kbuild_cmake_c_tmp $kbuild_cmake_cxx_tmp"
@@ -79,6 +79,8 @@ cxx_add_options='
     -Wno-missing-field-initializers
     -fpermissive
     -fno-exceptions
+    -fno-sized-deallocation
+    -fno-rtti
     -include base.h
     -fmax-errors=5
     '
@@ -147,15 +149,24 @@ echo '>)' >>$kbuild_cmake
 echo -e "\ntarget_compile_options(\${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:C>:" >>$kbuild_cmake
 sed -e "s/^\(.*\)$/    \1/" <$kbuild_cmake_c_tmp >>$kbuild_cmake
 echo '>)' >>$kbuild_cmake
-echo -e "\ntarget_sources(\${PROJECT_NAME} PRIVATE ${module_cpp})\n" >>$kbuild_cmake
+
+echo $bold'VSYS: Generating module.cpp template'$normal
+echo -e "#include \"base.h\"\n\nextern \"C\" {\n" >$module_cpp_template
+sed -e "$sed_fix_module_arch" <kbuild.mod.c >>$module_cpp_template
+echo 'MODULE_DESCRIPTION("VSYS_MODULE_DESCRIPTION");' >>$module_cpp_template
+echo 'MODULE_LICENSE("VSYS_MODULE_LICENSE");' >>$module_cpp_template
+echo 'MODULE_AUTHOR("VSYS_MODULE_AUTHOR");' >>$module_cpp_template
+echo -e "\n};" >>$module_cpp_template
+echo -e "\nif (VSYS_MOD)\n    target_sources(\${PROJECT_NAME} PRIVATE "'${CMAKE_CURRENT_SOURCE_DIR}'"/${module_cpp})" >>$kbuild_cmake
+echo '    file(READ "'${module_cpp_template}'" MODULE_CPP_CONTENT)' >>$kbuild_cmake
+echo '    string(REPLACE "VSYS_MODULE_DESCRIPTION" "${VSYS_MODULE_DESCRIPTION}" MODULE_CPP_CONTENT "${MODULE_CPP_CONTENT}" )' >>$kbuild_cmake
+echo '    string(REPLACE "VSYS_MODULE_LICENSE" "${VSYS_MODULE_LICENSE}" MODULE_CPP_CONTENT "${MODULE_CPP_CONTENT}" )' >>$kbuild_cmake
+echo '    string(REPLACE "VSYS_MODULE_AUTHOR" "${VSYS_MODULE_AUTHOR}" MODULE_CPP_CONTENT "${MODULE_CPP_CONTENT}" )' >>$kbuild_cmake
+echo '    file(WRITE "'${module_cpp}'" "${MODULE_CPP_CONTENT}")' >>$kbuild_cmake
+echo -e "endif()\n" >>$kbuild_cmake
 
 echo $bold'VSYS: Detecting linker parameters'$normal
 sed -n -e "$sed_linker_options" <.kbuild.ko.cmd >>$kbuild_cmake
-
-echo $bold'VSYS: Generating module.cpp'$normal
-echo -e "#include \"base.h\"\n\nextern \"C\" {\n" >$module_cpp
-sed -e "$sed_fix_module_arch" <kbuild.mod.c >>$module_cpp
-echo -e "\n};" >>$module_cpp
 
 
 ###############################################################################
