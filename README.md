@@ -11,6 +11,7 @@
   <img width="637" alt="image" src="https://github.com/Maximly/vsys/assets/98682581/5f5dc0e3-7ccc-41af-992e-fa18fe135025">
 
 **Currently working on:**
+- Static constructors/destructors calling (atexit implementation, etc.)
 - Polishing implementation of Module class
 
 **Next steps:**
