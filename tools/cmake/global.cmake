@@ -36,7 +36,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
     $<$<AND:$<NOT:$<CXX_COMPILER_ID:MSVC>>,$<NOT:$<COMPILE_LANGUAGE:C>>>:-Wall -Wextra -Werror>)
-target_compile_options(${PROJECT_NAME} PRIVATE -include base.h)
 
 
 ###############################################################################
@@ -85,8 +84,15 @@ include("${CMAKE_TOOLS_DIR}/detectos.cmake")
 
 
 ###############################################################################
-#   Linux kernel settings
+#   Platform-specific settings
 ###############################################################################
+if (VSYS_HOST_WINDOWS)
+    target_compile_options(${PROJECT_NAME} PRIVATE -FIbase.h)
+else()
+    target_compile_options(${PROJECT_NAME} PRIVATE -include base.h)
+endif()
+
+#   Linux kernel settings
 if (VSYS_HOST_LINUX AND VSYS_KERNEL)
     include("${CMAKE_TOOLS_DIR}/linux_kernel.cmake")
 endif()
