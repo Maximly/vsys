@@ -1,6 +1,6 @@
 # vsys: kernel modules in C++ with CMake
 **Cross-platform kernel module/driver development in C++/CMake**
-- Linux kernel C++ support is being implemented. Ubuntu arm64 is supported already!
+- Linux kernel C++ support is being implemented. Ubuntu/Debian/Raspbian arm64 is supported already!
 - Mac/Windows kernel is next.
 
 **What's done so far:**
