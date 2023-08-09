@@ -10,12 +10,15 @@ Revision History:
 
 --*/
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include "utils/csupport.h"
 #include "targets/targets.h"
-#include "utils/debug.h"
 #ifdef VSYS_USER
+#include <stdarg.h>
 #include <string.h>
+#include <stdio.h>
 #endif // VSYS_USER
+#include "utils/debug.h"
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
