@@ -23,7 +23,7 @@ cd $(dirname "$0")
 
 # Kernel headers path
 kernel_headers=$1
-if [[ ! -f "$kernel_headers" ]]; then
+if [[ ! -d "$kernel_headers" ]]; then
     kernel_headers=$(echo -e "/usr/src/linux-headers-$(uname -r)")
 fi
 
