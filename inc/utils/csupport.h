@@ -58,6 +58,8 @@ namespace csupport {
 //  GCC C extensions
 ////////////////////////////////////////////////////////////////////////////////
 
+#ifdef VSYS_LIN
+
 // __builtin_choose_expr
 #if !(defined __has_builtin && __has_builtin(__builtin_choose_expr))
 #define __builtin_choose_expr(const_exp, exp1, exp2) ((const_exp) ? (exp1) : (exp2))
@@ -88,5 +90,7 @@ template<typename T, size_t N> struct TypesCompatible<T[], T[N]> { enum { result
 template<typename T, size_t N> struct TypesCompatible<T[N], T[]> { enum { result = 1 }; };
 #define __builtin_types_compatible_p(type1, type2) csupport::TypesCompatible<type1, type2>::result
 #endif // __builtin_types_compatible_p
+
+#endif // VSYS_LIN
 
 } // csupport
