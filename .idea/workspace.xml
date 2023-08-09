@@ -26,11 +26,10 @@
   <component name="ChangeListManager">
     <list default="true" id="ec6337a2-246a-41f5-bcbf-85618443d28a" name="Changes" comment="adding rsbpi paths">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/base.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inc/utils/csupport.h" beforeDir="false" afterPath="$PROJECT_DIR$/inc/utils/csupport.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/debug.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/cmake/global.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/tools/cmake/global.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/cmake/linux_kernel.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/tools/cmake/linux_kernel.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/kbuild/kbuild.c" beforeDir="false" afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/kbuild/kbuild.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +39,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Kernel Debug" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:User Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -70,7 +69,8 @@
     &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Volumes/Develop/vsys/CMakeLists.txt&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/vsys&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -187,6 +187,8 @@
       <workItem from="1691509017655" duration="1155000" />
       <workItem from="1691510182818" duration="1601000" />
       <workItem from="1691518897406" duration="8262000" />
+      <workItem from="1691577507248" duration="101000" />
+      <workItem from="1691577830529" duration="1241000" />
     </task>
     <task id="LOCAL-00001" summary="adding rsbpi paths">
       <created>1685002399175</created>
