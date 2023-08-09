@@ -9,12 +9,6 @@ Revision History:
     26/05/2023 - Maxim Lyadvinsky - Created
 
 --*/
-#include "base.h"
-#ifdef VSYS_USER
-#include "stdarg.h"
-#include "stdio.h"
-#endif // VSYS_USER
-
 #ifdef VSYS_DBG
 
 static const int vsysDbgPref = 64;
