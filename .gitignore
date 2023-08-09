@@ -7,3 +7,4 @@ Makefile
 *.a
 *.tmp
 **/generated
+.idea/workspace.xml
