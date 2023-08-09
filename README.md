@@ -9,6 +9,7 @@
 - Linux kernel modules can now build and link correctly under Ubuntu arm64.
 - Linux kernel modules can now load/unload correctly under Ubuntu arm64.
   <img width="637" alt="image" src="https://github.com/Maximly/vsys/assets/98682581/5f5dc0e3-7ccc-41af-992e-fa18fe135025">
+- Kernel modules can now load/unload correctly under Raspbian linux arm64 (tested on Raspberry Pi 4).
 
 **Currently working on:**
 - Static constructors/destructors calling (atexit implementation, etc.)
