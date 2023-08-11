@@ -14,9 +14,7 @@
   <img width="1088" alt="image" src="https://github.com/Maximly/vsys/assets/98682581/b0eef446-60be-4ca8-8b10-7030d49bf860">
 
 **Currently working on:**
-- Static constructors/destructors calling (atexit implementation, etc.)
-- Polishing implementation of Module class
+- Make it working under x86/x64
 
 **Next steps:**
-- Make it working under x86/x64
 - Add Win kernel support before moving further? Your ideas/requests are welcome!
