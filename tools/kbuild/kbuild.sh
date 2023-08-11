@@ -84,7 +84,6 @@ cxx_add_options='
     -fno-exceptions
     -fno-sized-deallocation
     -fno-rtti
-    -include base.h
     -fmax-errors=5
     '
 sed_options_list_to_string='s/ \+/\\|/g'
