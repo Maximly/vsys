@@ -26,6 +26,7 @@ kernel_headers=$1
 if [[ ! -d "$kernel_headers" ]]; then
     kernel_headers=$(echo -e "/usr/src/linux-headers-$(uname -r)")
 fi
+KERNEL_HEADERS=$kernel_headers
 
 # Generated files
 cmake_generated_dir=../cmake/generated
@@ -37,8 +38,10 @@ inc_generated_dir=../../inc/targets/linux/kernel/generated
 src_generated_dir=targets/linux/kernel/generated
 precompiler_h=$inc_generated_dir/precompiler.h
 mkdir -p $cmake_generated_dir
+cmake_generated_dir_abs=$(cd "$cmake_generated_dir" && pwd)
 module_cpp=$src_generated_dir/module.cpp
-module_cpp_template=$(cd "$cmake_generated_dir" && pwd)/kbuild-module.cpp.cmake
+module_cpp_template=$cmake_generated_dir_abs/kbuild-module.cpp.cmake
+module_lds=$cmake_generated_dir_abs/kbuild-module.lds.cmake
 
 # Kbuild cleanup
 cleanup="rm -rf *.o *~ core .depend .*.cmd *.ko *.mod *.mod.c .tmp_versions *.order *.symvers $kbuild_cmake_tmp $kbuild_cmake_c_tmp $kbuild_cmake_cxx_tmp"
@@ -115,6 +118,9 @@ sed_fix_module_arch='
     /\.name/ s/\(KBUILD_MODNAME\)/\12/
     '
 
+# Sed script for updating module.lds
+sed_update_lds='s/^\(.*\.init_array[^{]*{\)\([^}]* *\)\(}.*\)$/\1 vcrtCtorStart = .;\2; vcrtCtorEnd = .; \3/'
+
 
 ###############################################################################
 #
@@ -173,7 +179,11 @@ echo '    file(WRITE "'${module_cpp}'" "${MODULE_CPP_CONTENT}")' >>$kbuild_cmake
 echo -e "endif()\n" >>$kbuild_cmake
 
 echo $bold'VSYS: Detecting linker parameters'$normal
-sed -n -e "$sed_linker_options" <.kbuild.ko.cmd >>$kbuild_cmake
+link_options=$(sed -n -e "$sed_linker_options" <.kbuild.ko.cmd)
+lds_file=$(echo $link_options | sed -e "s/^.*-T,\(.*\))/\1/")
+lds_file_abs=$(eval echo $lds_file)
+sed -e "$sed_update_lds" <$lds_file_abs >$module_lds
+echo $link_options | sed -e 's/^\(.*-T,\)[^),]*\([,)].*\)$/\1'$(echo $module_lds | sed -e 's/\//\\\//g')'\2/' >>$kbuild_cmake
 
 
 ###############################################################################

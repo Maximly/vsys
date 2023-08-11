@@ -14,7 +14,12 @@ Revision History:
 
 class MyModule : public vsys::Module
 {
+public:
+    MyModule();
+    ~MyModule();
+    
 protected:
+    virtual const char* Name() { return "VSYSTEST"; }
     virtual bool OnLoad();
     virtual bool OnRun();
     virtual void OnUnload();

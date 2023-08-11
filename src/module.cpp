@@ -18,9 +18,12 @@ using namespace vsys;
 //  Init/done
 ////////////////////////////////////////////////////////////////////////////////
 Module* Module::module_ = nullptr;
-Module::Module() :
+Module::Module()
+    #ifdef VSYS_USER
+    :
     args_count_(0),
     args_(nullptr)
+    #endif // VSYS_USER
 {
     if (Instance() == nullptr)
         module_ = this;
@@ -31,16 +34,71 @@ Module::~Module()
 {
     if (Instance() == this)
         module_ = nullptr;
+    #ifdef VSYS_USER
     for (int i = 0; i < args_count_; i++)
     {
         delete args_[i];
     }
     delete args_;
+    #endif // VSYS_USER
+}
+
+
+bool
+#ifdef VSYS_USER
+vsys::ModuleStart(int argc, char* argv[])
+#else
+vsys::ModuleStart()
+#endif // VSYS_USER
+{
+    Module* module = Module::Instance();
+    bool result = module != nullptr;
+    #ifdef VSYS_USER
+    if (result) {
+        DbgSetPref(("%s: ", module->Name()));
+    }
+    if (result && argc > 0) {
+        module->args_count_ = argc;
+        module->args_ = new char*[argc];
+        if (module->args_) {
+            for (int arg = 0; arg < argc; arg++)
+            {
+                module->args_[arg] = new char[strlen(argv[arg]) + 1];
+                    if (module->args_[arg]) {
+                        strcpy(module->args_[arg], argv[arg]);
+                    } else {
+                        result = false;
+                        break;
+                    }
+            }
+        } else {
+            result = false;
+        }
+    }
+    #endif // VSYS_USER
+    if (result)
+        result = module->OnLoad();
+    return result;
+}
+
+
+bool
+vsys::ModuleRun()
+{
+    return Module::Instance() != nullptr && Module::Instance()->OnRun();
+}
+
+
+void
+vsys::ModuleExit()
+{
+    if (Module::Instance())
+        Module::Instance()->OnUnload();
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Platform info
+//  Module/platform info
 ////////////////////////////////////////////////////////////////////////////////
 const char* Module::binary_info_ =
     #ifdef VSYS_MAC
@@ -62,6 +120,19 @@ const char* Module::binary_info_ =
     #elif defined VSYS_A64
     "arm64";
     #endif // VSYS_X64
+const char* Module::not_supported_ = "not supported";
+
+const char*
+Module::Name()
+{
+    const char* name;
+    #ifdef VSYS_LINKERNEL
+    name = THIS_MODULE->name;
+    #else
+    name = "VSYS";
+    #endif // VSYS_LINKERNEL
+    return name;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -71,30 +142,10 @@ const char* Module::binary_info_ =
 int
 main(int argc, char* argv[])
 {
-    Module* module = Module::Instance();
-    bool result = module != nullptr;
-    if (result && argc > 0) {
-        module->args_count_ = argc;
-        module->args_ = new char*[argc];
-        if (module->args_) {
-            for (int arg = 0; arg < argc; arg++) {
-                module->args_[arg] = new char[strlen(argv[arg]) + 1];
-                if (module->args_[arg]) {
-                    strcpy(module->args_[arg], argv[arg]);
-                } else {
-                    result = false;
-                    break;
-                }
-            }
-        } else {
-            result = false;
-        }
-    }
+    bool result = ModuleStart(argc, argv);
     if (result) {
-        if (module->OnLoad()) {
-            result = module->OnRun();
-            module->OnUnload();
-        }
+        result = ModuleRun();
+        ModuleExit();
     }
     return result ? 0 : -1;
 }
@@ -105,22 +156,27 @@ main(int argc, char* argv[])
 //  Platform-specific entry points: VSYS_LINKERNEL
 ////////////////////////////////////////////////////////////////////////////////
 #if defined VSYS_LINKERNEL
+
 extern "C"
 {
 
 int __init kbuild_init(void)
 {
-    DbgPrint(("%s: module_init entered", THIS_MODULE->name));
+    DbgSetPref(("%s: ", THIS_MODULE->name));
+    DbgPrint(("module_init entered"));
     bool result = InitCrt();
-    DbgPrint(("%s: module_init status is %s", THIS_MODULE->name, result ? "ok (loaded)" : "failed (not loaded)"));
+    if (result)
+        result = ModuleStart();
+    DbgPrint(("module_init status is %s", result ? "ok (loaded)" : "failed (not loaded)"));
     return result ? 0 : -1;
 }
 
 void __exit kbuild_exit(void)
 {
-    DbgPrint(("%s: module_exit enetered", THIS_MODULE->name));
+    DbgPrint(("module_exit enetered"));
+    ModuleExit();
     DoneCrt();
-    DbgPrint(("%s: module_exit exited (unloaded)", THIS_MODULE->name));
+    DbgPrint(("module_exit exited (unloaded)"));
 }
 
 module_init(kbuild_init);

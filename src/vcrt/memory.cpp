@@ -12,15 +12,34 @@ Revision History:
 #ifdef VSYS_LINKERNEL
 
 #include <new>
-extern "C"
+
 void*
-_Znam(std::size_t size)
+operator new(const std::size_t size)
+{
+    return kmalloc(size, GFP_KERNEL);
+}
+
+void*
+operator new(const std::size_t size, const std::nothrow_t&) noexcept
+{
+    return kmalloc(size, GFP_KERNEL);
+}
+
+void*
+operator new[](const std::size_t size)
+{
+    return kmalloc(size, GFP_KERNEL);
+}
+
+void*
+operator new[](const std::size_t size, const std::nothrow_t &) noexcept
 {
     return kmalloc(size, GFP_KERNEL);
 }
 
 void
-operator delete(void *p) noexcept {
+operator delete(void *p) noexcept
+{
     kfree(p);
 }
 

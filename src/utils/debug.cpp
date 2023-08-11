@@ -19,14 +19,18 @@ static char vsysPref[vsysDbgPref] = {};
 #endif // VSYS_LINKERNEL
 
 void
-_DbgPrintRawVa(bool ln, const char* p, va_list args)
+_DbgPrintRawVa(bool ln, bool pref, const char* p, va_list args)
 {
-    char buf[256];
-    int result = vsnprintf(buf, sizeof(buf), p, args);
-    if (result > 0) {
-        if (ln && result < (static_cast<int>(sizeof(buf)) - 1)) {
-            buf[result] = '\n';
-            buf[result + 1] = 0;
+    char buf[512];
+    int prefResult = pref && vsysPref[0] != 0 ? snprintf(buf, sizeof(buf), "%s", vsysPref) : 0;
+    int printResult = 0;
+    if (prefResult >= 0)
+        printResult = vsnprintf(buf + prefResult, sizeof(buf) - prefResult, p, args);
+    if (printResult > 0) {
+        printResult += prefResult;
+        if (ln && printResult < (static_cast<int>(sizeof(buf)) - 1)) {
+            buf[printResult] = '\n';
+            buf[printResult + 1] = 0;
         }
         printf("%s", buf);
     }
@@ -38,7 +42,7 @@ _DbgPrintRaw(const char* p, ...)
 {
     va_list args;
     va_start(args, p);
-    _DbgPrintRawVa(false, p, args);
+    _DbgPrintRawVa(false, false, p, args);
     va_end(args);
 }
 
@@ -48,9 +52,7 @@ _DbgPrint(const char* p, ...)
 {
     va_list args;
     va_start(args, p);
-    if (vsysPref[0] != 0)
-        printf("%s", vsysPref);
-    _DbgPrintRawVa(true, p, args);
+    _DbgPrintRawVa(true, true, p, args);
     va_end(args);
 }
 
