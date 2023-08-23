@@ -23,15 +23,6 @@ MyModule::~MyModule()
     DbgPrint(("MyModule::Dtor()"));
 }
 
-class CtorTest
-{
-public:
-    CtorTest() { DbgPrint(("CtorTest::Ctor() this = %px", this)); }
-    ~CtorTest() { DbgPrint(("CtorTest::Dtor() this = %px", this)); }
-};
-
-CtorTest t1, t2, t3;
-
 bool
 MyModule::OnLoad()
 {
